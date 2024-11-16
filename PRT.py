@@ -72,7 +72,7 @@ def add_book(user):
     genre = input("Enter the genre of the book: ").lower()
     while (True):
         try:
-            read_status = int(input("Enter '0' if you want to read the book, or '1' if you have already read it: "))
+            read_status = int(input("Enter '0' to add to 'to read', or '1' to add to 'have read': "))
         except:
             pass
         if read_status in [0,1]:
@@ -91,7 +91,7 @@ def add_book(user):
     user.add_book(book)
 
 def check_book(user):
-    title = input("Enter the title of the book to be removed: ").title()
+    title = input("Enter the title of the book to be found: ").title()
     result = user.check_book(title)
     if result:
         sql = 'select * from books where user = %s and title = %s'
@@ -109,7 +109,7 @@ def remove_book(user):
     title = input("Enter the title of the book to be removed: ").title()
     res = user.check_book(title)
     if not res:
-        print(f'{title} is not in your reading list. Please add it instead')
+        print(f'{title} is not in your reading list.')
         return
     user.remove_book(title)
 
